@@ -1,3 +1,39 @@
+'use client';
+
+import { useState } from 'react';
+
+function FlipCard({
+  front,
+  back
+}: {
+  front: React.ReactNode;
+  back: React.ReactNode;
+}) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div
+      className="flip-card cursor-pointer h-[280px]"
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div className={`flip-card-inner ${isFlipped ? 'flipped' : ''}`}>
+        <div className="flip-card-front card">
+          {front}
+          <div className="absolute bottom-4 left-0 right-0 text-center">
+            <span className="text-xs text-zinc-500">Tap to see calculation</span>
+          </div>
+        </div>
+        <div className="flip-card-back card">
+          {back}
+          <div className="absolute bottom-4 left-0 right-0 text-center">
+            <span className="text-xs text-zinc-500">Tap to flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-zinc-950 to-zinc-900">
@@ -40,80 +76,109 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ManaBall Scores */}
+      {/* ManaBall Scores - Flip Cards */}
       <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">ManaBall Scores</h2>
+        <h2 className="text-3xl font-bold text-center mb-4">ManaBall Scores</h2>
+        <p className="text-zinc-500 text-center mb-12">Click any card to see how it&apos;s calculated</p>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {/* Fight Rank */}
-          <div className="card">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-zinc-500 uppercase tracking-wide">Fight Rank</span>
-              <span className="text-2xl font-bold tier-s">S</span>
-            </div>
-            <div className="text-4xl font-bold text-white mb-2">81.6%</div>
-            <p className="text-sm text-zinc-400">Win rate against tested opponents</p>
-            <div className="mt-4 bg-zinc-800 rounded-full h-2">
-              <div className="bg-purple-500 h-2 rounded-full" style={{ width: '81.6%' }}></div>
-            </div>
-          </div>
+          <FlipCard
+            front={
+              <>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm text-zinc-500 uppercase tracking-wide">Fight Rank</span>
+                  <span className="text-2xl font-bold tier-s">S</span>
+                </div>
+                <div className="text-4xl font-bold text-white mb-2">81.6%</div>
+                <p className="text-sm text-zinc-400">Win rate against tested opponents</p>
+                <div className="mt-4 bg-zinc-800 rounded-full h-2">
+                  <div className="bg-purple-500 h-2 rounded-full" style={{ width: '81.6%' }}></div>
+                </div>
+              </>
+            }
+            back={
+              <>
+                <div className="text-sm text-zinc-500 uppercase tracking-wide mb-4">How Fight Rank Works</div>
+                <div className="bg-zinc-800 rounded-lg p-3 font-mono text-sm mb-4">
+                  <div className="text-zinc-400">Fight Rank = Wins / Total Games</div>
+                  <div className="text-zinc-300 mt-2">= 80 / 98</div>
+                  <div className="text-purple-400 font-bold text-lg">= 81.6%</div>
+                </div>
+                <div className="text-xs text-zinc-400 space-y-1">
+                  <div><span className="text-yellow-400">S+</span> = 85%+</div>
+                  <div><span className="text-purple-400">S</span> = 75-84% ← You</div>
+                  <div><span className="text-blue-400">A</span> = 65-74%</div>
+                  <div><span className="text-green-400">B</span> = 55-64%</div>
+                </div>
+              </>
+            }
+          />
 
           {/* Efficiency Rank */}
-          <div className="card border-yellow-500/50">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-zinc-500 uppercase tracking-wide">Efficiency Rank</span>
-              <span className="text-2xl font-bold tier-s-plus">S+</span>
-            </div>
-            <div className="text-4xl font-bold text-white mb-2">8.22x</div>
-            <p className="text-sm text-zinc-400">Value per dollar vs opponent</p>
-            <div className="mt-4 text-xs text-zinc-500">
-              For every $1 spent, you get 8.22x the winning power
-            </div>
-          </div>
-
-          {/* Lead Per Turn */}
-          <div className="card">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-zinc-500 uppercase tracking-wide">Lead Per Turn</span>
-              <span className="text-lg font-bold text-blue-400">Aggro/Tempo</span>
-            </div>
-            <div className="text-4xl font-bold text-white mb-2">3.6</div>
-            <p className="text-sm text-zinc-400">Damage dealt per turn average</p>
-            <div className="mt-4 text-xs text-zinc-500">
-              Wins by turn 11 on average
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Efficiency Explanation */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">The Efficiency Story</h2>
-
-          <div className="card bg-gradient-to-br from-zinc-900 to-zinc-950">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4">How Efficiency is Calculated</h3>
-                <div className="bg-zinc-800 rounded-lg p-4 font-mono text-sm mb-4">
-                  <div className="text-zinc-400">Efficiency = (Win Rate / 100) × (Opponent $ / Your $)</div>
+          <FlipCard
+            front={
+              <>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm text-zinc-500 uppercase tracking-wide">Efficiency Rank</span>
+                  <span className="text-2xl font-bold tier-s-plus">S+</span>
+                </div>
+                <div className="text-4xl font-bold text-white mb-2">8.22x</div>
+                <p className="text-sm text-zinc-400">Value per dollar vs opponent</p>
+                <div className="mt-4 text-xs text-zinc-500">
+                  For every $1 spent, you get 8.22x the winning power
+                </div>
+              </>
+            }
+            back={
+              <>
+                <div className="text-sm text-zinc-500 uppercase tracking-wide mb-4">How Efficiency Works</div>
+                <div className="bg-zinc-800 rounded-lg p-3 font-mono text-sm mb-4">
+                  <div className="text-zinc-400 text-xs">Efficiency = (WinRate/100) × (Their$ / Your$)</div>
                   <div className="text-zinc-300 mt-2">= 0.816 × ($1,238 / $123)</div>
                   <div className="text-zinc-300">= 0.816 × 10.07</div>
-                  <div className="text-yellow-400 font-bold">= 8.22</div>
+                  <div className="text-yellow-400 font-bold text-lg">= 8.22x</div>
                 </div>
-                <p className="text-zinc-400 text-sm">
-                  This means for every dollar you invest, you get <strong className="text-white">8.22x</strong> the
-                  winning power compared to what your opponent gets per dollar.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="inline-block bg-zinc-800 rounded-xl p-6">
-                  <div className="text-6xl font-bold text-yellow-400 mb-2">8.22x</div>
-                  <div className="text-zinc-400">Value Multiplier</div>
+                <div className="text-xs text-zinc-400">
+                  <p>You&apos;re beating a deck that costs <span className="text-yellow-400">10x more</span>.</p>
+                  <p className="mt-1">Every $1 you spend delivers <span className="text-yellow-400">8.22x</span> the value.</p>
                 </div>
-              </div>
-            </div>
-          </div>
+              </>
+            }
+          />
+
+          {/* Lead Per Turn */}
+          <FlipCard
+            front={
+              <>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm text-zinc-500 uppercase tracking-wide">Lead Per Turn</span>
+                  <span className="text-lg font-bold text-blue-400">Aggro/Tempo</span>
+                </div>
+                <div className="text-4xl font-bold text-white mb-2">3.6</div>
+                <p className="text-sm text-zinc-400">Damage dealt per turn average</p>
+                <div className="mt-4 text-xs text-zinc-500">
+                  Wins by turn 11 on average
+                </div>
+              </>
+            }
+            back={
+              <>
+                <div className="text-sm text-zinc-500 uppercase tracking-wide mb-4">How LPT Works</div>
+                <div className="bg-zinc-800 rounded-lg p-3 font-mono text-sm mb-4">
+                  <div className="text-zinc-400">LPT = Starting Life / Avg Turns to Win</div>
+                  <div className="text-zinc-300 mt-2">= 40 / 11.1</div>
+                  <div className="text-blue-400 font-bold text-lg">= 3.6 dmg/turn</div>
+                </div>
+                <div className="text-xs text-zinc-400 space-y-1">
+                  <div><span className="text-red-400">4.0+</span> = Hyper Aggro</div>
+                  <div><span className="text-blue-400">3.0-3.9</span> = Aggro/Tempo ← You</div>
+                  <div><span className="text-green-400">2.0-2.9</span> = Midrange</div>
+                  <div><span className="text-zinc-400">1.0-1.9</span> = Control</div>
+                </div>
+              </>
+            }
+          />
         </div>
       </section>
 
