@@ -81,7 +81,7 @@ export default function Home() {
         {/* Result Banner */}
         <div className="bg-gradient-to-r from-purple-900/50 to-blue-900/50 border border-purple-500/30 rounded-2xl p-8 max-w-4xl mx-auto mb-16 text-center">
           <div className="text-sm text-purple-300 uppercase tracking-wide mb-2">98 Game Simulation Result</div>
-          <div className="text-6xl font-bold text-white mb-4">80 - 20</div>
+          <div className="text-6xl font-bold text-white mb-4">80 - 18</div>
           <div className="text-xl text-purple-200">
             <span className="text-green-400 font-bold">81.6%</span> win rate with a deck that costs{" "}
             <span className="text-yellow-400 font-bold">10x less</span>
