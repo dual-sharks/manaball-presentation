@@ -50,15 +50,28 @@ export default function Home() {
         </div>
 
         {/* Matchup Overview */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-          <div className="card text-center">
+        <div className="flex items-center justify-center gap-4 md:gap-8 max-w-4xl mx-auto mb-16">
+          <div className="card text-center flex-1 max-w-sm">
             <div className="text-sm text-zinc-500 uppercase tracking-wide mb-2">Your Deck</div>
+            <img
+              src="https://cards.scryfall.io/art_crop/front/3/b/3bd81ae6-e628-447a-a36b-597e63ede295.jpg"
+              alt="Yuriko, the Tiger's Shadow"
+              className="w-32 h-32 mx-auto rounded-full object-cover border-2 border-green-500 mb-4"
+            />
             <h2 className="text-2xl font-bold text-white mb-2">Yuriko Ninjutsu</h2>
             <div className="text-4xl font-bold text-green-400 mb-2">$122.90</div>
             <div className="text-sm text-zinc-400">Commander: Yuriko, the Tiger&apos;s Shadow</div>
           </div>
-          <div className="card text-center">
+
+          <div className="text-4xl md:text-6xl font-bold text-zinc-600">VS</div>
+
+          <div className="card text-center flex-1 max-w-sm">
             <div className="text-sm text-zinc-500 uppercase tracking-wide mb-2">Opponent</div>
+            <img
+              src="https://cards.scryfall.io/art_crop/front/0/a/0ac3fb08-741a-49e5-9fae-b26819677d24.jpg"
+              alt="Brago, King Eternal"
+              className="w-32 h-32 mx-auto rounded-full object-cover border-2 border-red-500 mb-4"
+            />
             <h2 className="text-2xl font-bold text-white mb-2">Brago Blink</h2>
             <div className="text-4xl font-bold text-red-400 mb-2">$1,238.05</div>
             <div className="text-sm text-zinc-400">Commander: Brago, King Eternal</div>
@@ -67,7 +80,7 @@ export default function Home() {
 
         {/* Result Banner */}
         <div className="bg-gradient-to-r from-purple-900/50 to-blue-900/50 border border-purple-500/30 rounded-2xl p-8 max-w-4xl mx-auto mb-16 text-center">
-          <div className="text-sm text-purple-300 uppercase tracking-wide mb-2">100 Game Simulation Result</div>
+          <div className="text-sm text-purple-300 uppercase tracking-wide mb-2">98 Game Simulation Result</div>
           <div className="text-6xl font-bold text-white mb-4">80 - 20</div>
           <div className="text-xl text-purple-200">
             <span className="text-green-400 font-bold">81.6%</span> win rate with a deck that costs{" "}
@@ -293,7 +306,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="container mx-auto px-4 py-16 text-center">
         <div className="text-zinc-500 text-sm">
-          <p>Simulation Engine: MTG Forge 2.0.09 • 100 AI vs AI Games</p>
+          <p>Simulation Engine: MTG Forge 2.0.09 • 98 AI vs AI Games</p>
           <p className="mt-2">ManaBall Analytics v0.3.0</p>
         </div>
       </footer>
