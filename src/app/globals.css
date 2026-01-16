@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --foreground: #ededed;
+  --background: #0a0a0a;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card {
+  background-color: rgb(24 24 27);
+  border: 1px solid rgb(39 39 42);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.tier-s-plus {
+  color: rgb(250 204 21);
+}
+
+.tier-s {
+  color: rgb(192 132 252);
+}
+
+.tier-a {
+  color: rgb(96 165 250);
+}
+
+.tier-b {
+  color: rgb(74 222 128);
+}
