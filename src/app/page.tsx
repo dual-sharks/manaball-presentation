@@ -173,7 +173,7 @@ export default function Home() {
                   </thead>
                   <tbody>
                     {(expandedDeck === 'yuriko' ? yurikoCards : bragoCards)
-                      .slice()
+                      .filter(item => !item.card.startsWith('+'))
                       .sort((a, b) => b.price - a.price)
                       .map((item, idx) => (
                       <tr key={idx} className="border-b border-zinc-800">
@@ -181,6 +181,14 @@ export default function Home() {
                         <td className="py-2 text-right text-zinc-500">${item.price.toFixed(2)}</td>
                       </tr>
                     ))}
+                    <tr className="border-b border-zinc-800">
+                      <td className="py-2 text-zinc-500 italic">
+                        + {expandedDeck === 'yuriko' ? '70' : '73'} more cards (lands, commons, etc.)
+                      </td>
+                      <td className="py-2 text-right text-zinc-500">
+                        ${expandedDeck === 'yuriko' ? '14.79' : '145.19'}
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
