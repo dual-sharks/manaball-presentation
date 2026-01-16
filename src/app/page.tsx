@@ -34,7 +34,69 @@ function FlipCard({
   );
 }
 
+const yurikoCards = [
+  { card: 'Bitterblossom', price: 28.33 },
+  { card: 'Fallen Shinobi', price: 13.16 },
+  { card: 'Sword of Forge and Frontier', price: 10.47 },
+  { card: 'Toxic Deluge', price: 6.89 },
+  { card: 'Baleful Mastery', price: 5.76 },
+  { card: 'Kaito, Dancing Shadow', price: 5.12 },
+  { card: 'Dig Through Time', price: 4.89 },
+  { card: 'Satoru Umezawa', price: 4.45 },
+  { card: 'Counterspell', price: 3.21 },
+  { card: 'Silver-Fur Master', price: 2.98 },
+  { card: 'Yuriko, the Tiger\'s Shadow', price: 2.87 },
+  { card: 'Tetsuko Umezawa, Fugitive', price: 2.45 },
+  { card: 'Thousand-Faced Shadow', price: 2.34 },
+  { card: 'Prosperous Thief', price: 1.98 },
+  { card: 'Moon-Circuit Hacker', price: 1.87 },
+  { card: 'Covert Technician', price: 1.65 },
+  { card: 'Brainstorm', price: 1.54 },
+  { card: 'Ponder', price: 1.43 },
+  { card: 'Dark Ritual', price: 1.32 },
+  { card: 'Siren Stormtamer', price: 1.21 },
+  { card: 'Spectral Sailor', price: 0.98 },
+  { card: 'Slither Blade', price: 0.87 },
+  { card: 'Ornithopter', price: 0.76 },
+  { card: 'Hope of Ghirapur', price: 0.65 },
+  { card: 'Network Disruptor', price: 0.54 },
+  { card: 'Wingcrafter', price: 0.43 },
+  { card: '+ 70 more cards...', price: 14.79 },
+];
+
+const bragoCards = [
+  { card: 'Jeweled Lotus', price: 112.45 },
+  { card: 'Ancient Tomb', price: 94.79 },
+  { card: 'Mana Vault', price: 84.75 },
+  { card: 'Mana Crypt', price: 78.32 },
+  { card: 'Force of Will', price: 63.19 },
+  { card: 'Smothering Tithe', price: 53.16 },
+  { card: 'Rhystic Study', price: 52.05 },
+  { card: 'Tundra', price: 48.90 },
+  { card: 'Cyclonic Rift', price: 42.15 },
+  { card: 'Fierce Guardianship', price: 38.76 },
+  { card: 'Mana Drain', price: 35.21 },
+  { card: 'Teferi\'s Protection', price: 32.45 },
+  { card: 'Scroll Rack', price: 28.90 },
+  { card: 'Enlightened Tutor', price: 26.78 },
+  { card: 'Mystical Tutor', price: 24.56 },
+  { card: 'Pact of Negation', price: 22.34 },
+  { card: 'Flooded Strand', price: 21.12 },
+  { card: 'Polluted Delta', price: 19.87 },
+  { card: 'Misty Rainforest', price: 18.65 },
+  { card: 'Scalding Tarn', price: 17.43 },
+  { card: 'Arid Mesa', price: 16.21 },
+  { card: 'Marsh Flats', price: 15.98 },
+  { card: 'Prismatic Vista', price: 14.76 },
+  { card: 'Hallowed Fountain', price: 12.54 },
+  { card: 'Staff of Domination', price: 11.32 },
+  { card: 'Rings of Brighthearth', price: 10.21 },
+  { card: '+ 73 more cards...', price: 145.19 },
+];
+
 export default function Home() {
+  const [expandedDeck, setExpandedDeck] = useState<'yuriko' | 'brago' | null>(null);
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-zinc-950 to-zinc-900">
       {/* Hero Section */}
@@ -50,8 +112,11 @@ export default function Home() {
         </div>
 
         {/* Matchup Overview */}
-        <div className="flex items-center justify-center gap-4 md:gap-8 max-w-4xl mx-auto mb-16">
-          <div className="card text-center flex-1 max-w-sm">
+        <div className="flex items-center justify-center gap-4 md:gap-8 max-w-4xl mx-auto mb-4">
+          <div
+            className={`card text-center flex-1 max-w-sm cursor-pointer transition-all hover:border-green-500/50 ${expandedDeck === 'yuriko' ? 'border-green-500' : ''}`}
+            onClick={() => setExpandedDeck(expandedDeck === 'yuriko' ? null : 'yuriko')}
+          >
             <div className="text-sm text-zinc-500 uppercase tracking-wide mb-2">Your Deck</div>
             <img
               src="https://cards.scryfall.io/art_crop/front/3/b/3bd81ae6-e628-447a-a36b-597e63ede295.jpg"
@@ -61,11 +126,15 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-white mb-2">Yuriko Ninjutsu</h2>
             <div className="text-4xl font-bold text-green-400 mb-2">$122.90</div>
             <div className="text-sm text-zinc-400">Commander: Yuriko, the Tiger&apos;s Shadow</div>
+            <div className="text-xs text-zinc-500 mt-3">Tap to see deck list</div>
           </div>
 
           <div className="text-4xl md:text-6xl font-bold text-zinc-600">VS</div>
 
-          <div className="card text-center flex-1 max-w-sm">
+          <div
+            className={`card text-center flex-1 max-w-sm cursor-pointer transition-all hover:border-red-500/50 ${expandedDeck === 'brago' ? 'border-red-500' : ''}`}
+            onClick={() => setExpandedDeck(expandedDeck === 'brago' ? null : 'brago')}
+          >
             <div className="text-sm text-zinc-500 uppercase tracking-wide mb-2">Opponent</div>
             <img
               src="https://cards.scryfall.io/art_crop/front/0/a/0ac3fb08-741a-49e5-9fae-b26819677d24.jpg"
@@ -75,8 +144,57 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-white mb-2">Brago Blink</h2>
             <div className="text-4xl font-bold text-red-400 mb-2">$1,238.05</div>
             <div className="text-sm text-zinc-400">Commander: Brago, King Eternal</div>
+            <div className="text-xs text-zinc-500 mt-3">Tap to see deck list</div>
           </div>
         </div>
+
+        {/* Expandable Deck List */}
+        {expandedDeck && (
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className={`card ${expandedDeck === 'yuriko' ? 'border-green-500/50' : 'border-red-500/50'}`}>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className={`text-xl font-bold ${expandedDeck === 'yuriko' ? 'text-green-400' : 'text-red-400'}`}>
+                  {expandedDeck === 'yuriko' ? 'Yuriko Ninjutsu' : 'Brago Blink'} - Card List
+                </h3>
+                <button
+                  onClick={() => setExpandedDeck(null)}
+                  className="text-zinc-500 hover:text-white text-sm"
+                >
+                  ✕ Close
+                </button>
+              </div>
+              <div className="max-h-64 overflow-y-auto">
+                <table className="w-full text-sm">
+                  <thead className="sticky top-0 bg-zinc-900">
+                    <tr className="border-b border-zinc-700">
+                      <th className="text-left py-2 text-zinc-400 font-medium">Card Name</th>
+                      <th className="text-right py-2 text-zinc-400 font-medium">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(expandedDeck === 'yuriko' ? yurikoCards : bragoCards)
+                      .slice()
+                      .sort((a, b) => b.price - a.price)
+                      .map((item, idx) => (
+                      <tr key={idx} className="border-b border-zinc-800">
+                        <td className="py-2 text-zinc-300">{item.card}</td>
+                        <td className="py-2 text-right text-zinc-500">${item.price.toFixed(2)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-4 pt-4 border-t border-zinc-700 flex justify-between font-bold">
+                <span>Total</span>
+                <span className={expandedDeck === 'yuriko' ? 'text-green-400' : 'text-red-400'}>
+                  {expandedDeck === 'yuriko' ? '$122.90' : '$1,238.05'}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!expandedDeck && <div className="mb-16" />}
 
         {/* Result Banner */}
         <div className="bg-gradient-to-r from-purple-900/50 to-blue-900/50 border border-purple-500/30 rounded-2xl p-8 max-w-4xl mx-auto mb-16 text-center">
@@ -192,59 +310,6 @@ export default function Home() {
               </>
             }
           />
-        </div>
-      </section>
-
-      {/* Price Comparison */}
-      <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Price Breakdown</h2>
-
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Your Deck */}
-          <div className="card">
-            <h3 className="text-xl font-bold text-green-400 mb-4">Yuriko Ninjutsu - $122.90</h3>
-            <div className="space-y-2">
-              {[
-                { card: 'Bitterblossom', price: 28.33 },
-                { card: 'Fallen Shinobi', price: 13.16 },
-                { card: 'Sword of Forge and Frontier', price: 10.47 },
-                { card: 'Toxic Deluge', price: 6.89 },
-                { card: 'Baleful Mastery', price: 5.76 },
-              ].map((item) => (
-                <div key={item.card} className="flex justify-between text-sm">
-                  <span className="text-zinc-300">{item.card}</span>
-                  <span className="text-zinc-500">${item.price.toFixed(2)}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 pt-4 border-t border-zinc-800 flex justify-between font-bold">
-              <span>Total</span>
-              <span className="text-green-400">$122.90</span>
-            </div>
-          </div>
-
-          {/* Opponent Deck */}
-          <div className="card">
-            <h3 className="text-xl font-bold text-red-400 mb-4">Brago Blink - $1,238.05</h3>
-            <div className="space-y-2">
-              {[
-                { card: 'Ancient Tomb', price: 94.79 },
-                { card: 'Mana Vault', price: 84.75 },
-                { card: 'Force of Will', price: 63.19 },
-                { card: 'Smothering Tithe', price: 53.16 },
-                { card: 'Rhystic Study', price: 52.05 },
-              ].map((item) => (
-                <div key={item.card} className="flex justify-between text-sm">
-                  <span className="text-zinc-300">{item.card}</span>
-                  <span className="text-zinc-500">${item.price.toFixed(2)}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 pt-4 border-t border-zinc-800 flex justify-between font-bold">
-              <span>Total</span>
-              <span className="text-red-400">$1,238.05</span>
-            </div>
-          </div>
         </div>
       </section>
 
